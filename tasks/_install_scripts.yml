@@ -1,0 +1,8 @@
+#  vim: set et fenc=utf-8 ff=unix sts=2 sw=2 ts=2 :
+---
+- name: cent_scripts | Install files
+  template:
+    src: "{{ item }}"
+    dest: "{{ cent_scripts__home_bin_dir }}/{{ item | basename }}"
+    mode: +x
+  loop: "{{ lookup('fileglob', role_path + '/templates/' + dir + '/*', wantlist=True) }}"
